@@ -17,12 +17,18 @@ def main():
         nextturn = next_turn(nextturn)
         stop_play_on = check_winner(current_list, player1, player2)
 
+        if stop_play_on:
+            break
+
         board(current_list)
         update = int(input(f"{player2} please use enter number from 1-9: "))
         current_list = update_current_list(current_list, update, nextturn)
         board(current_list)
         nextturn = next_turn(nextturn)
         stop_play_on = check_winner(current_list, player1, player2)
+
+        if stop_play_on:
+            break
 
         play_count = play_count + 1
 
@@ -45,49 +51,49 @@ def update_current_list(current_list, update, nextturn):
 def check_winner(current_list, player1, player2):
     """This function checks the array of replaced numbers to see if there is any winner or if its a draw"""
         
-    if current_list[0] == current_list[1] == current_list[2]:
+    if current_list[0] == current_list[1] and current_list[1] == current_list[2]:
         if current_list[0].lower == "x":
             print(f"{player1} Wins!!!")
         else:
             print(f"{player2} Wins!!!")
         return True
-    elif current_list[3] == current_list[4] == current_list[5]:
+    elif current_list[3] == current_list[4] and current_list[4] == current_list[5]:
         if current_list[3].lower == "x":
             print(f"{player1} Wins!!!")
         else:
             print(f"{player2} Wins!!!")
         return True
-    elif current_list[6] == current_list[7] == current_list[8]:
+    elif current_list[6] == current_list[7] and current_list[7] == current_list[8]:
         if current_list[6].lower == "x":
             print(f"{player1} Wins!!!")
         else:
             print(f"{player2} Wins!!!")
         return True
-    elif current_list[0] == current_list[3] == current_list[6]:
+    elif current_list[0] == current_list[3] and current_list[3] == current_list[6]:
         if current_list[3].lower == "x":
             print(f"{player1} Wins!!!")
         else:
             print(f"{player2} Wins!!!")
         return True
-    elif current_list[1] == current_list[4] == current_list[7]:
+    elif current_list[1] == current_list[4] and current_list[4] == current_list[7]:
         if current_list[1].lower == "x":
             print(f"{player1} Wins!!!")
         else:
             print(f"{player2} Wins!!!")
         return True
-    elif current_list[2] == current_list[5] == current_list[8]:
+    elif current_list[2] == current_list[5] and current_list[5] == current_list[8]:
         if current_list[2].lower == "x":
             print(f"{player1} Wins!!!")
         else:
             print(f"{player2} Wins!!!")
         return True
-    elif current_list[0] == current_list[4] == current_list[8]:
-        if current_list[6].lower == "x":
+    elif current_list[0] == current_list[4] and current_list[4] == current_list[8]:
+        if current_list[0].lower == "x":
             print(f"{player1} Wins!!!")
         else:
             print(f"{player2} Wins!!!")
         return True
-    elif current_list[2] == current_list[4] == current_list[6]:
+    elif current_list[2] == current_list[4] and current_list[4] == current_list[6]:
         if current_list[6].lower == "x":
             print(f"{player1} Wins!!!")
         else:
