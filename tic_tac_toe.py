@@ -1,36 +1,59 @@
 def main():
     """This is where all my functions will be called"""
-    current_list = [1,2,3,4,5,6,7,8,9]
-    nextturn = "x"
-    
-    player1 = input("Player X, Please enter your name: ")
-    player2 = input("Player O, Please enter your name: ")
-
-    play_count = 0
-    stop_play_on = False
-    while play_count < 5 and not stop_play_on: 
+    print("\nWELCOME TO THE GAME\n")
+    print("Love is a game of tic-tac-toe, Constantly waiting for the next x or o. — Lang Leav\n")
+    again = "yes"
+    while again.lower() == "yes":
+        current_list = [1,2,3,4,5,6,7,8,9]
+        nextturn = "x"
         
-        board(current_list)
-        update = int(input(f"{player1} please use enter number from 1-9: "))
-        current_list = update_current_list(current_list, update, nextturn)
-        board(current_list)
-        nextturn = next_turn(nextturn)
-        stop_play_on = check_winner(current_list, player1, player2)
+        player1 = input("Player X, Please enter your name: ")
+        player2 = input("Player O, Please enter your name: ")
 
-        if stop_play_on:
-            break
+        play_count = 0
+        stop_play_on = False
+        while play_count < 10 and not stop_play_on: 
 
-        board(current_list)
-        update = int(input(f"{player2} please use enter number from 1-9: "))
-        current_list = update_current_list(current_list, update, nextturn)
-        board(current_list)
-        nextturn = next_turn(nextturn)
-        stop_play_on = check_winner(current_list, player1, player2)
+            if play_count == 9:
+                print("Its a Draw!!!")
+                break
+            
+            board(current_list)
+            update = int(input(f"{player1} please use enter number from 1-9: "))
+            current_list = update_current_list(current_list, update, nextturn)
+            board(current_list)
+            nextturn = next_turn(nextturn)
+            stop_play_on = check_winner(current_list, player1, player2)
 
-        if stop_play_on:
-            break
+            if stop_play_on:
+                print(f"{player1} Wins!!!")
+                break
 
-        play_count = play_count + 1
+            play_count = play_count + 1
+
+            if play_count == 9:
+                print("Its a Draw!!!")
+                break
+
+            board(current_list)
+            update = int(input(f"{player2} please use enter number from 1-9: "))
+            current_list = update_current_list(current_list, update, nextturn)
+            board(current_list)
+            nextturn = next_turn(nextturn)
+            stop_play_on = check_winner(current_list, player1, player2)
+
+            if stop_play_on:
+                print(f"{player2} Wins!!!")
+                break
+
+            play_count = play_count + 1
+
+            if play_count == 9:
+                print("Its a Draw!!!")
+                break
+        again = input("\nWould you like to play again? yes/no: ")
+        print()
+    print("\nThat was fun, have a good day!\n")
 
 
 def next_turn(nextturn):
@@ -52,70 +75,32 @@ def check_winner(current_list, player1, player2):
     """This function checks the array of replaced numbers to see if there is any winner or if its a draw"""
         
     if current_list[0] == current_list[1] and current_list[1] == current_list[2]:
-        if current_list[0].lower == "x":
-            print(f"{player1} Wins!!!")
-        else:
-            print(f"{player2} Wins!!!")
         return True
-    elif current_list[3] == current_list[4] and current_list[4] == current_list[5]:
-        if current_list[3].lower == "x":
-            print(f"{player1} Wins!!!")
-        else:
-            print(f"{player2} Wins!!!")
-        return True
-    elif current_list[6] == current_list[7] and current_list[7] == current_list[8]:
-        if current_list[6].lower == "x":
-            print(f"{player1} Wins!!!")
-        else:
-            print(f"{player2} Wins!!!")
-        return True
-    elif current_list[0] == current_list[3] and current_list[3] == current_list[6]:
-        if current_list[3].lower == "x":
-            print(f"{player1} Wins!!!")
-        else:
-            print(f"{player2} Wins!!!")
-        return True
-    elif current_list[1] == current_list[4] and current_list[4] == current_list[7]:
-        if current_list[1].lower == "x":
-            print(f"{player1} Wins!!!")
-        else:
-            print(f"{player2} Wins!!!")
-        return True
-    elif current_list[2] == current_list[5] and current_list[5] == current_list[8]:
-        if current_list[2].lower == "x":
-            print(f"{player1} Wins!!!")
-        else:
-            print(f"{player2} Wins!!!")
-        return True
-    elif current_list[0] == current_list[4] and current_list[4] == current_list[8]:
-        if current_list[0].lower == "x":
-            print(f"{player1} Wins!!!")
-        else:
-            print(f"{player2} Wins!!!")
-        return True
-    elif current_list[2] == current_list[4] and current_list[4] == current_list[6]:
-        if current_list[6].lower == "x":
-            print(f"{player1} Wins!!!")
-        else:
-            print(f"{player2} Wins!!!")
-        return True
-    else:
-        count = 0
-        for i in current_list:
-            if i in range(0,10):
-                count = count + 1
-        if count <= 2:
-            print("It's a Draw")
-            return True
-        else:
-            return False
 
-#core functions to write
-#- names 
-#- list / array of numbers that will be replaced by x or O
-#- check winner
-#- verify if number has been chosen before
-#- print the board
+    elif current_list[3] == current_list[4] and current_list[4] == current_list[5]:
+        return True
+
+    elif current_list[6] == current_list[7] and current_list[7] == current_list[8]:
+        return True
+
+    elif current_list[0] == current_list[3] and current_list[3] == current_list[6]:
+        return True
+
+    elif current_list[1] == current_list[4] and current_list[4] == current_list[7]:
+        return True
+
+    elif current_list[2] == current_list[5] and current_list[5] == current_list[8]:
+        return True
+
+    elif current_list[0] == current_list[4] and current_list[4] == current_list[8]:
+        return True
+
+    elif current_list[2] == current_list[4] and current_list[4] == current_list[6]:
+        return True
+
+    else:
+        pass
+
 
 def board(current_list):
     """This function takes the latest array and prints the board when called"""
